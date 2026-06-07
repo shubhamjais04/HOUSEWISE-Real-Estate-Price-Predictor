@@ -1,86 +1,152 @@
-HOUSEWISE - House Price Prediction
-Hey! This is my machine learning project where I predict house prices using some basic property features. I built this to learn more about regression models and get hands-on with real data.
-What This Project Does
-Takes in details about a house (like bedrooms, bathrooms, square footage) and predicts how much it might sell for. I used data from King County, Seattle to train the model.
-Why I Built This
-I wanted to understand how machine learning actually works beyond just theory. House price prediction seemed like a good starting point because:
+# 🏠 HOUSEWISE — Real Estate Price Predictor
 
-The problem is easy to understand
-There's plenty of data available
-I could actually see if my predictions made sense
+A machine learning system that predicts residential property prices instantly — built on 21,613 real house transactions from King County, Seattle. Enter 5 property details, get an instant data-driven price estimate through an interactive web interface.
 
-What I Used:
+---
 
-Python - for everything
-pandas & numpy - data cleaning and manipulation
-matplotlib & seaborn - making visualizations
-scikit-learn - building the models
-Jupyter Notebook - running and testing everything
+## 🌐 Web Interface
 
-The Dataset
-I used the King County House Sales dataset which has around 21,000 house sales. For this project, I focused on just 5 features to keep things simple:
+**Input Form — Enter property details:**
+![HOUSEWISE Input Interface](screenshots/interface_without_result.jpg)
 
-Number of bedrooms
-Number of bathrooms
-Living area (sqft)
-Lot size (sqft)
-Number of floors
+**Prediction Output — Instant price estimate:**
+![HOUSEWISE Prediction Result](screenshots/interface_with_result.jpg)
 
-What I Did:
+---
 
-Cleaned the data - handled missing values, removed outliers
-Explored patterns - made some plots to see how features relate to price
-Tried different models - tested Linear Regression and Random Forest
-Picked the best one - Random Forest worked better (R² = 0.87)
-Saved the model - so I can use it later without retraining
+## 📌 Project Overview
 
-How to Use It
-If you want to run this:
-bash# Clone the repo
+Traditional property valuation relies on agent expertise and manual comparisons — inconsistent, time-consuming, and prone to human bias. HOUSEWISE replaces guesswork with a data-driven ML pipeline that covers the full lifecycle: raw data → EDA → feature engineering → model training → evaluation → deployed web application.
+
+---
+
+## 🏆 Model Performance
+
+| Metric | Linear Regression | Random Forest |
+|--------|------------------|---------------|
+| R² Score (Test) | 0.49 | **0.53** |
+| RMSE | ~$272,080 | **~$266,541** |
+| MAE | ~$175,000 | **~$160,103** |
+| MAPE | ~33% | **~31.38%** |
+| **Selected** | ❌ | ✅ **Final Model** |
+
+> Random Forest Regressor selected as the final model — outperformed Linear Regression across all four metrics.
+
+---
+
+## ✨ What's Covered
+
+- 📥 Data loading and inspection — 21,613 rows, 21 columns
+- 📊 Exploratory Data Analysis — price distribution, correlation heatmap, scatter plots
+- ⚙️ Feature engineering — 5 key features selected from 21 available columns
+- 📐 Data preparation — 80/20 train-test split, StandardScaler normalization
+- 🤖 Model training — Linear Regression (baseline) vs Random Forest (final)
+- 📈 Model evaluation — R², RMSE, MAE, MAPE comparison
+- 💾 Model persistence — saved with Pickle for reuse without retraining
+- 🌐 Web deployment — interactive Gradio interface for non-technical users
+
+---
+
+## 🔍 Key Insights
+
+| Finding | Detail |
+|---------|--------|
+| Strongest predictor | `sqft_living` — highest correlation with price |
+| Bathrooms > Bedrooms | Bathrooms have stronger price impact than bedroom count |
+| Price distribution | Right-skewed — most houses priced between $200K–$800K |
+| Mean price | $540,088 |
+| Median price | $450,000 |
+
+---
+
+## 💡 Sample Predictions
+
+| Bedrooms | Bathrooms | Living Area | Lot Size | Floors | Predicted Price |
+|----------|-----------|-------------|----------|--------|----------------|
+| 3 | 2 | 2,000 sqft | 5,000 sqft | 1 | $625,777 |
+| 5 | 3.5 | 3,500 sqft | 8,000 sqft | 2.5 | $1,110,857 |
+| 8 | 4 | 6,000 sqft | 10,000 sqft | 5 | $1,800,413 |
+
+---
+
+## 📊 Dataset
+
+- **Source:** King County House Sales Dataset — Kaggle
+- **Records:** 21,613 residential property transactions
+- **Region:** Seattle, Washington, USA
+- **Features:** 21 columns — property attributes, sale prices, location details
+- **Target Variable:** `price` (house sale price in USD)
+
+---
+
+## 🛠️ Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-4B8BBE?style=for-the-badge&logo=python&logoColor=white)
+![Gradio](https://img.shields.io/badge/Gradio-FF7C00?style=for-the-badge&logo=gradio&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+
+---
+
+## 📁 Project Structure
+
+```
+HOUSEWISE/
+├── data/                              # King County house sales dataset
+├── images/                            # EDA plots and visualizations
+├── models/                            # Saved model and scaler (pickle)
+├── screenshots/
+│   ├── interface_without_result.jpg   # Gradio input form
+│   └── interface_with_result.jpg      # Gradio prediction output
+├── Housewise.ipynb                    # Main ML notebook
+└── README.md                          # Project documentation
+```
+
+
+---
+
+## 🚀 How to Run
+
+**1. Clone the repository**
+```bash
 git clone https://github.com/shubhamjais04/HOUSEWISE.git
 cd HOUSEWISE
+```
 
-# Install what you need
-pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+**2. Install dependencies**
+```bash
+pip install pandas numpy scikit-learn matplotlib seaborn gradio jupyter
+```
 
-# Open the notebook
+**3. Open the notebook**
+```bash
 jupyter notebook Housewise.ipynb
-Then just run the cells in order. To make predictions with your own house data, scroll down to the prediction cells and change the values.
-Results
-The Random Forest model got about 87% accuracy on test data. Not perfect, but pretty decent for a basic model! The average prediction error is around $85,000.
-Biggest learning: living area (sqft_living) matters way more than other features for predicting price.
-What I Learned
+```
 
-How to clean messy real-world data
-The difference between different regression models
-Why Random Forest often beats Linear Regression
-How to save and load models with pickle
-Feature scaling is important!
+**4. Run all cells in order**
 
-Things I Want to Improve
+**5. Launch the Gradio web interface**
 
-Add more features like location, condition, year built
-Try other algorithms like XGBoost
-Maybe build a simple web app where people can input house details
-Better visualization of predictions vs actual prices
+The last cell in the notebook launches the interactive web app — open the local URL in your browser and start predicting prices instantly.
 
-Files in This Repo
+---
 
-Housewise.ipynb - main notebook with all the code
-kc_house_data.csv - the dataset
-models/ - saved model and scaler files
-README.md - this file
+## 👨‍💻 Author
 
-Contact
-If you have questions or suggestions, feel free to reach out!
-Shubham Jaiswal
-Email: shubhjais.in@gmail.com
-LinkedIn: linkedin.com/in/shubhamjaiswal2004
+**Shubham Jaiswal**   
+*ML engineer | Building data-driven tools that bring transparency to real-world decisions*
 
-Note: This was my first proper ML project, so the code might not be perfect. Always learning and improving!
+---
 
+## 📬 Connect
 
-
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/shubhjais04)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shubhamjais04)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shubhjais.in@gmail.com)
 
 
 
